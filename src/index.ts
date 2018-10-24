@@ -3,26 +3,26 @@ export class Tool {
 
     /**
      * 计算两个坐标之间的方位角
-     * @param lat1 坐标1的纬度
      * @param lon1 坐标1的经度
-     * @param lat2 坐标2的纬度
+     * @param lat1 坐标1的纬度
      * @param lon2 坐标2的经度
+     * @param lat2 坐标2的纬度
      * @return
      */
-    public static getAngleBetweenTwoPoints(lat1: number, lon1: number, lat2: number, lon2: number): number {
+    public static getAngleBetweenTwoPoints(lon1: number, lat1: number, lon2: number, lat2: number): number {
         let changedX = lon2 - lon1;
         let changedY = lat2 - lat1;
         return Math.atan2(changedY, changedX) / Math.PI * 180;
     }
     /**
      * 计算两个坐标之间的距离
-     * @param lat1 坐标1的纬度
      * @param lon1 坐标1的经度
-     * @param lat2 坐标2的纬度
+     * @param lat1 坐标1的纬度
      * @param lon2 坐标2的经度
+     * @param lat2 坐标2的纬度
      * @return
      */
-    public static getDistanceBetweenTwoPoints(lat1: number, lon1: number, lat2: number, lon2: number): number {
+    public static getDistanceBetweenTwoPoints(lon1: number, lat1: number, lon2: number, lat2: number): number {
         let a = Tool.Rad(lat1) - Tool.Rad(lat2);
         let b = Tool.Rad(lon1) - Tool.Rad(lon2);
         let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(Tool.Rad(lat1)) * Math.cos(Tool.Rad(lat2)) * Math.pow(Math.sin(b / 2), 2)));

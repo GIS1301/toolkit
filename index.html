@@ -33,7 +33,7 @@
 <body>
     <form class="el-form demo-form-inline yf-box" id="yfForm">
         <div>
-            <h3>坐标1</h3>
+            <h3>坐标A</h3>
         </div>
         <div class="el-form-item"><label class="el-form-item__label">经度</label>
             <div class="el-form-item__content">
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div>
-            <h3>坐标2</h3>
+            <h3>坐标B</h3>
         </div>
         <div class="el-form-item"><label class="el-form-item__label">经度</label>
             <div class="el-form-item__content">
@@ -73,6 +73,9 @@
                 <span>重置</span></button>
         </div>
         <div class="box-panel">
+            <div>
+                <strong>注：此处的方位角是B相对于A的角度</strong>
+            </div>
             <label for="">方位角（度）：</label><strong id="anglePanel">--</strong>
             <div></div>
             <label for="">距离（米）：</label><strong id="disPanel">--</strong>
@@ -103,10 +106,10 @@
         });
 
         resetBtn.addEventListener('click', function () {
-            lon1.value = 0;
-            lat1.value = 0;
-            lon2.value = 0;
-            lat2.value = 0;
+            lon1.value = '';
+            lat1.value = '';
+            lon2.value = '';
+            lat2.value = '';
 
             anglePanel.innerHTML = '--';
             disPanel.innerHTML = '--';
