@@ -10,9 +10,28 @@ export class Tool {
      * @return
      */
     public static getAngleBetweenTwoPoints(lon1: number, lat1: number, lon2: number, lat2: number): number {
-        let changedX = lon2 - lon1;
-        let changedY = lat2 - lat1;
-        return Math.atan2(changedY, changedX) / Math.PI * 180;
+        let dx = 0,
+            dy = 0,
+            angle = 0;
+        dx = lat2 - lat1;
+        dy = lon2 - lon1;
+        if (lat2 == lat1) {
+            angle = Math.PI / 2.0;
+            if (lon2 == lon1) {
+                angle = 0.0;
+            } else if (lon2 < lon1) {
+                angle = 3.0 * Math.PI / 2.0;
+            }
+        } else if ((lat2 > lat1) && (lon2 > lon1)) {
+            angle = Math.atan(dx / dy);
+        } else if ((lat2 > lat1) && (lon2 < lon1)) {
+            angle = Math.PI / 2 + Math.atan(-dy / dx);
+        } else if ((lat2 < lat1) && (lon2 < lon1)) {
+            angle = Math.PI + Math.atan(dx / dy);
+        } else if ((lat2 < lat1) && (lon2 > lon1)) {
+            angle = 3.0 * Math.PI / 2.0 + Math.atan(dy / -dx);
+        }
+        return (angle * 180 / Math.PI);
     }
     /**
      * 计算两个坐标之间的距离
