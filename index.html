@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.4.7/theme-chalk/index.css" />
+    <title>GIS-toolkit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.4.7/theme-chalk/index.css" />
     <style>
-        
+
 
         .yf--hidden{
             display: none;
@@ -89,7 +89,23 @@
 
     <script src="./build/Tool.min.js"></script>
     <script>
+        function makeToFloatNumber(precision) {
+            if (precision <= 1) return "0.1";
+            return ["0.", "".padStart(precision - 1, "0"), "1"].join("")
+        }
 
+        var CONFIG = {
+            INPUT_PRECISION: 8, // 输入框的数字精度
+        };
+        var inputEles = document.querySelectorAll("input[type=number]");
+        var i = 0;
+        var len = inputEles.length;
+        var item;
+        for (i = 0; i < len; i++) {
+            item = inputEles[i];
+            item.step = makeToFloatNumber(CONFIG.INPUT_PRECISION);
+        }
+        // 操作 计算
         calcBtn.addEventListener('click', function () {
             var x1 = lon1.value.trim(),
                 y1 = lat1.value.trim(),
@@ -106,7 +122,7 @@
             anglePanel.innerHTML = angle;
             disPanel.innerHTML = dis;
         });
-
+        // 操作 重置
         resetBtn.addEventListener('click', function () {
             lon1.value = '';
             lat1.value = '';
